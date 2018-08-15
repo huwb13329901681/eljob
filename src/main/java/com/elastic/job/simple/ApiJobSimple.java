@@ -20,14 +20,14 @@ public class ApiJobSimple {
     }
 
     private static CoordinatorRegistryCenter createRegistryCenter() {
-        CoordinatorRegistryCenter regCenter = new ZookeeperRegistryCenter(new ZookeeperConfiguration("ip1:2181,ip2:2182", "demo-job"));
+        CoordinatorRegistryCenter regCenter = new ZookeeperRegistryCenter(new ZookeeperConfiguration("192.168.24.111:2181,192.168.24.112:2181,192.168.24.113:2181", "demo-job"));
         regCenter.init();
         return regCenter;
     }
 
     private static LiteJobConfiguration createJobConfiguration() {
         // mySimpleTest 为jobname 0/10 * * * * ?为cron表达式  3 分片数量  0=北京,1=上海,2=广州 分片对应内容  jobParameter 自定义参数
-        JobCoreConfiguration simpleCoreConfig = JobCoreConfiguration.newBuilder("simpleJobDemo", "0/10 * * * * ?", 3).shardingItemParameters("0=北京,1=上海,2=广州").build();
+        JobCoreConfiguration simpleCoreConfig = JobCoreConfiguration.newBuilder("simpleJobDemo", "0/01 * * * * ?", 3).shardingItemParameters("0=北京,1=上海,2=广州").build();
         SimpleJobConfiguration simpleJobConfig = new SimpleJobConfiguration(simpleCoreConfig, ApiMyElasticJobSimple.class.getCanonicalName());
         LiteJobConfiguration jobConfiguration = LiteJobConfiguration.newBuilder(simpleJobConfig).build();
         return  jobConfiguration;

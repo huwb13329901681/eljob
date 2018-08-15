@@ -21,7 +21,7 @@ public class ApiJobDataflow {
     }
 
     private static CoordinatorRegistryCenter createRegistryCenter() {
-        CoordinatorRegistryCenter regCenter = new ZookeeperRegistryCenter(new ZookeeperConfiguration("host1:2181,host2:2181", "elastic-job-demo"));
+        CoordinatorRegistryCenter regCenter = new ZookeeperRegistryCenter(new ZookeeperConfiguration("192.168.24.111:2181,192.168.24.112:2181,192.168.24.113:2181", "elastic-job-demo"));
         regCenter.init();
         return regCenter;
     }
