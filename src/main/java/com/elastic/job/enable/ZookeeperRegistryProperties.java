@@ -3,10 +3,10 @@ package com.elastic.job.enable;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-@ConfigurationProperties(
-    prefix = "paascloud.zk"
-)
-
+/**
+ * @author hwb
+ */
+@ConfigurationProperties(prefix = "paascloud.zk")
 @Data
 public class ZookeeperRegistryProperties {
     private String zkAddressList;

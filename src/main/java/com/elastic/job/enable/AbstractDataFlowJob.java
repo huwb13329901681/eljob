@@ -9,6 +9,9 @@ import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * @author hwb
+ */
 public abstract class AbstractDataFlowJob<T> implements DataflowJob<T> {
 
     private static final Logger log = LoggerFactory.getLogger(AbstractDataFlowJob.class);
