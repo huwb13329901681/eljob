@@ -28,18 +28,20 @@ public class Apple {
         this.weigth = weigth;
     }
 
-    public Apple() {
-
-    }
-
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         Apple apple = (Apple) o;
 
-        if (!color.equals(apple.color)) return false;
+        if (!color.equals(apple.color)) {
+            return false;
+        }
         return weigth.equals(apple.weigth);
     }
 
