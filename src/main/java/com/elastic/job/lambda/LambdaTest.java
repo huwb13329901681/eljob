@@ -1,5 +1,6 @@
 package com.elastic.job.lambda;
 
+import com.dangdang.ddframe.job.lite.api.strategy.JobInstance;
 import com.google.common.collect.Lists;
 import org.springframework.beans.BeanUtils;
 

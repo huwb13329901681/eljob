@@ -9,7 +9,8 @@ import java.util.Date;
  * @author huwenbin
  */
 import com.elastic.job.enable.ElasticJobConfig;
-@ElasticJobConfig(cron = "0/01 * * * * ?",shardingTotalCount=3)
+
+//@ElasticJobConfig(cron = "0/01 * * * * ?",shardingTotalCount=3,shardingItemParameters="0=北京,1=上海,2=广州")
 public class ApiMyElasticJobSimple implements SimpleJob {
 
     /**

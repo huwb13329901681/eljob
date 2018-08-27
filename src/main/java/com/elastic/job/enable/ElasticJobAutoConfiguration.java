@@ -35,6 +35,9 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.util.CollectionUtils;
 
+/**
+ * @author huwenbin
+ */
 @Configuration
 @ConditionalOnExpression("'${elaticjob.zookeeper.server-lists}'.length() > 0")
 public class ElasticJobAutoConfiguration {

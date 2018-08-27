@@ -6,7 +6,7 @@ import java.io.Serializable;
 
 @Data
 public class JobParameter implements Serializable {
-    private static final long serialVersionUID = -610797345091216847L;
+    private static final long serialVersionUID = 4960733253342570720L;
     private int fetchNum;
     int shardingItem;
     int shardingTotalCount;
@@ -18,6 +18,11 @@ public class JobParameter implements Serializable {
 
     public JobParameter setShardingTotalCount(int shardingTotalCount) {
         this.shardingTotalCount = shardingTotalCount;
+        return this;
+    }
+
+    public JobParameter setFetchNum(int fetchNum) {
+        this.fetchNum = fetchNum;
         return this;
     }
 

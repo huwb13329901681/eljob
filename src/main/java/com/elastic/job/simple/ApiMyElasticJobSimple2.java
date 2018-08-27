@@ -7,10 +7,10 @@ import com.elastic.job.enable.ElasticJobConfig;
 import java.util.Date;
 
 /**
- * @author huwenbin
+ * @author huwenbin  * 0/20 * * * ?
  */
 
-@ElasticJobConfig(cron = "0/02 * * * * ?",shardingTotalCount=3)
+//@ElasticJobConfig(cron = "0/02 * * * * ?",shardingTotalCount=3,shardingItemParameters="0=a,1=b")
 public class ApiMyElasticJobSimple2 implements SimpleJob {
 
     /**
