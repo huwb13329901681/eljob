@@ -2,6 +2,7 @@ package com.elastic.job.thread;
 
 /**
  * @author huwenbin
+ *  线程死锁的形成
  */
 public class TestThreadDeadLock {
 

@@ -1,9 +1,12 @@
-package com.elastic.job.enable;
+package com.elastic.job.dataflowjob;
 
 import lombok.Data;
 
 import java.io.Serializable;
 
+/**
+ * @author huwenbin
+ */
 @Data
 public class JobParameter implements Serializable {
     private static final long serialVersionUID = 4960733253342570720L;

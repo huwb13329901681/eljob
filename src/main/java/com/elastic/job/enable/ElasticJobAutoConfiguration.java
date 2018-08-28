@@ -36,6 +36,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.util.CollectionUtils;
 
 /**
+ * @ConditionalOnExpression 当长度大于1的时候才会进行配置类的初始化
+ * @PostConstruct  1）不能有任何参数，没有返回值，不能是static，可以试final
+ *                 2）当你需要往Bean里注入一个其父类中定义的属性，而你又无法复写父类的属性或属性的setter方法时
+ *
  * @author huwenbin
  */
 @Configuration
@@ -45,7 +49,8 @@ public class ElasticJobAutoConfiguration {
     private ZookeeperRegistryCenter regCenter;
     @Resource
     private ApplicationContext applicationContext;
-    @PostConstruct
+
+//    @PostConstruct
     public void init() {
         Map<String, ElasticJob> elasticJobMap = this.applicationContext.getBeansOfType(ElasticJob.class);
         Iterator var2 = elasticJobMap.values().iterator();

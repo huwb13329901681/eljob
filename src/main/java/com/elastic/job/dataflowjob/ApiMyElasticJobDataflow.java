@@ -1,14 +1,21 @@
 package com.elastic.job.dataflowjob;
 
 
+import com.elastic.job.service.User;
+import com.elastic.job.service.UserService;
+import com.google.common.collect.Lists;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 
 import com.dangdang.ddframe.job.api.ShardingContext;
 import com.dangdang.ddframe.job.api.dataflow.DataflowJob;
 
+import javax.annotation.Resource;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * @author huwenbin
@@ -25,26 +32,30 @@ import java.util.List;
  *          从而使得作业永远不会停止。processData的返回值用于表示数据是否处理成功，抛出异常或者返回false将会在统计信息中归入失败次数，返回true则归入成功次数。
  *  Script：类型用于处理脚本，可直接使用，无需编码。
  */
-public class ApiMyElasticJobDataflow implements DataflowJob<Foo>{
+@ElasticConfig(name = "ApiMyElasticJobDataflow",cron = "0/01 * * * * ?",shardingItemParameters = "0=beijing,1=shanghai",shardingTotalCount = 3,jobParameter="1")
+public class ApiMyElasticJobDataflow implements DataflowJob<User>{
 
-    private FooRepository  fooRepository = FooRepositoryFactory.repository();
 
     /**
      * 抓取
-     * @param context 分片上下文
-     * @return List<Foo>
+     * @param shardingContext 分片上下文
+     * @return List<User>
      */
     @Override
-    public List<Foo> fetchData(ShardingContext context) {
-        System.out.println("---------fetchData: "+context.getShardingParameter()+"-----------");
-        List<Foo> result =  fooRepository.findTodoData(context.getShardingParameter(), 10);
-        System.out.println(String.format("Item: %s | Time: %s | Thread: %s | %s | count: %d",
-                context.getShardingItem(),
-                new SimpleDateFormat("HH:mm:ss").format(new Date()),
-                Thread.currentThread().getId(),
-                "DATAFLOW FETCH",
-                CollectionUtils.isEmpty(result)?0:result.size()));
-        return result;
+    public List<User> fetchData(ShardingContext shardingContext) {
+        System.out.println("分片参数："+shardingContext.getJobParameter()+"分片总数："+shardingContext.getShardingTotalCount());
+        List<User> list = Lists.newArrayList();
+        User u1 = new User();
+        u1.setId(UUID.randomUUID().toString()+"1");
+        u1.setName("张三");
+        u1.setSex("男");
+        User u2 = new User();
+        u2.setId(UUID.randomUUID().toString()+"2");
+        u2.setName("李四");
+        u2.setSex("男");
+        list.add(u1);
+        list.add(u2);
+        return list;
 
     }
 
@@ -54,16 +65,7 @@ public class ApiMyElasticJobDataflow implements DataflowJob<Foo>{
      * @param data 数据源
      */
     @Override
-    public void processData(ShardingContext shardingContext, List<Foo> data) {
-        System.out.println("------------processData: "+shardingContext.getShardingParameter()+"----------");
-        System.out.println(String.format("Item: %s | Time: %s | Thread: %s | %s | count: %d",
-                shardingContext.getShardingItem(),
-                new SimpleDateFormat("HH:mm:ss").format(new Date()),
-                Thread.currentThread().getId(), "DATAFLOW PROCESS",
-                CollectionUtils.isEmpty(data)?0:data.size()));
-        for (Foo each : data) {
-            fooRepository.setCompleted(each.getId());
-        }
-
+    public void processData(ShardingContext shardingContext, List<User> data) {
+        System.out.println("执行从数据库查询到的list="+data);
     }
 }
