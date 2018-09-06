@@ -24,9 +24,18 @@ public class RotateServerStrategy {
         jobInstance2.setJobInstanceId(UUID.randomUUID().toString()+"2");
         JobStance jobInstance3 = new JobStance();
         jobInstance3.setJobInstanceId(UUID.randomUUID().toString()+"3");
+        JobStance jobInstance4 = new JobStance();
+        jobInstance4.setJobInstanceId(UUID.randomUUID().toString()+"4");
+        JobStance jobInstance5 = new JobStance();
+        jobInstance5.setJobInstanceId(UUID.randomUUID().toString()+"5");
+        JobStance jobInstance6 = new JobStance();
+        jobInstance6.setJobInstanceId(UUID.randomUUID().toString()+"6");
         shardingUnits.add(jobInstance1);
         shardingUnits.add(jobInstance2);
         shardingUnits.add(jobInstance3);
+        shardingUnits.add(jobInstance4);
+        shardingUnits.add(jobInstance5);
+        shardingUnits.add(jobInstance6);
         // 工作空间名称
         String jobName = "eljob1111";
         // 服务器个数

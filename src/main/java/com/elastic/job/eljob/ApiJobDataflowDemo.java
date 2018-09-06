@@ -6,6 +6,7 @@ import com.dangdang.ddframe.job.config.JobCoreConfiguration;
 import com.dangdang.ddframe.job.config.JobTypeConfiguration;
 import com.dangdang.ddframe.job.config.dataflow.DataflowJobConfiguration;
 import com.dangdang.ddframe.job.config.simple.SimpleJobConfiguration;
+import com.dangdang.ddframe.job.lite.api.JobScheduler;
 import com.dangdang.ddframe.job.lite.config.LiteJobConfiguration;
 import com.dangdang.ddframe.job.lite.spring.api.SpringJobScheduler;
 import com.dangdang.ddframe.job.reg.zookeeper.ZookeeperRegistryCenter;
@@ -40,7 +41,7 @@ public class ApiJobDataflowDemo {
             Class<?> clz = elasticJobMBean.getClass();
             ElasticConfig conf = clz.getAnnotation(ElasticConfig.class);
             String jobTypeName = elasticJobMBean.getClass().getInterfaces()[0].getSimpleName();
-            JobCoreConfiguration dataflowCoreConfig = JobCoreConfiguration.newBuilder(conf.name(), conf.cron(), conf.shardingTotalCount()).shardingItemParameters(conf.shardingItemParameters()).build();
+            JobCoreConfiguration dataflowCoreConfig = JobCoreConfiguration.newBuilder(conf.name(),conf.cron(), conf.shardingTotalCount()).jobParameter(conf.jobParameter()).shardingItemParameters(conf.shardingItemParameters()).build();
             // 定义Lite作业根配置
             JobTypeConfiguration typeConfig = null;
             if ("SimpleJob".equals(jobTypeName)) {
@@ -51,6 +52,7 @@ public class ApiJobDataflowDemo {
             }
             LiteJobConfiguration liteJobConfiguration= LiteJobConfiguration.newBuilder(typeConfig).build();
             new SpringJobScheduler(elasticJob,regCenter, liteJobConfiguration).init();
+            new JobScheduler(regCenter, liteJobConfiguration).init();
         }
     }
 

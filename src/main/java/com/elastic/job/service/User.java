@@ -4,7 +4,7 @@ package com.elastic.job.service;
 import lombok.Data;
 
 @Data
-public class User {
+public class User{
 
     private String id;
 

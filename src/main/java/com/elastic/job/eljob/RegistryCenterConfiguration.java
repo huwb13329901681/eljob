@@ -13,6 +13,14 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * @author huwenbin
+ *
+ *  @ConditionalOnBean（仅仅在当前上下文中存在某个对象时，才会实例化一个Bean）
+ *  @ConditionalOnClass（某个class位于类路径上，才会实例化一个Bean）
+ *  @ConditionalOnExpression（当表达式为true的时候，才会实例化一个Bean）
+ *  @ConditionalOnMissingBean（仅仅在当前上下文中不存在某个对象时，才会实例化一个Bean）
+ *  @ConditionalOnMissingClass（某个class类路径上不存在的时候，才会实例化一个Bean）
+ *  @ConditionalOnNotWebApplication（不是web应用）
+ *  @EnableConfigurationProperties @ConfigurationProperties注解主要用来把properties配置文件转化为bean来使用的而@EnableConfigurationProperties注解的作用是@ConfigurationProperties注解生效
  */
 @Configuration
 @ConditionalOnClass({ElasticJob.class})

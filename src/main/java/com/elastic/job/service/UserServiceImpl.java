@@ -17,7 +17,7 @@ public class UserServiceImpl implements UserService {
         User u1 = new User();
         u1.setId(user.getId());
         u1.setName("张三");
-        u1.setSex("男");
+        u1.setSex("女");
         User u2 = new User();
         u2.setId(user.getId());
         u2.setName("李四");
