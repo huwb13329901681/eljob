@@ -2,6 +2,7 @@ package com.elastic.job.dataflowjob;
 
 import com.dangdang.ddframe.job.api.ShardingContext;
 import com.dangdang.ddframe.job.api.dataflow.DataflowJob;
+import com.elastic.job.enable.JobParameter;
 import com.google.common.base.Splitter;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;

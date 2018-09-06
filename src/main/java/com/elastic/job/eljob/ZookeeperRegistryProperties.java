@@ -1,4 +1,4 @@
-package com.elastic.job.enable;
+package com.elastic.job.eljob;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

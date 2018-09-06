@@ -2,7 +2,6 @@ package com.elastic.job.enable;
 
 import com.dangdang.ddframe.job.api.ShardingContext;
 import com.dangdang.ddframe.job.api.dataflow.DataflowJob;
-import com.elastic.job.dataflowjob.ElasticConfig;
 import com.elastic.job.service.User;
 import com.elastic.job.service.UserService;
 import lombok.extern.slf4j.Slf4j;

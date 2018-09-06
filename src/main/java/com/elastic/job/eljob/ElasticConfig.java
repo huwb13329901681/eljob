@@ -1,4 +1,4 @@
-package com.elastic.job.dataflowjob;
+package com.elastic.job.eljob;
 
 import com.dangdang.ddframe.job.lite.api.listener.AbstractDistributeOnceElasticJobListener;
 import com.dangdang.ddframe.job.lite.api.listener.ElasticJobListener;

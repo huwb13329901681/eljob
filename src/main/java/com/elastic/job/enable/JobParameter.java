@@ -1,4 +1,4 @@
-package com.elastic.job.dataflowjob;
+package com.elastic.job.enable;
 
 import lombok.Data;
 

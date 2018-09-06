@@ -1,9 +1,8 @@
-package com.elastic.job.enable;
+package com.elastic.job.eljob;
 
 import com.dangdang.ddframe.job.api.ElasticJob;
 import com.dangdang.ddframe.job.reg.zookeeper.ZookeeperConfiguration;
 import com.dangdang.ddframe.job.reg.zookeeper.ZookeeperRegistryCenter;
-import com.elastic.job.dataflowjob.ElasticConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
@@ -37,7 +36,6 @@ public class RegistryCenterConfiguration {
         zookeeperConfiguration.setMaxSleepTimeMilliseconds(this.regCenterProperties.getMaxSleepTimeMilliseconds());
         zookeeperConfiguration.setSessionTimeoutMilliseconds(this.regCenterProperties.getSessionTimeoutMilliseconds());
         zookeeperConfiguration.setMaxRetries(this.regCenterProperties.getMaxRetries());
-//        zookeeperConfiguration.setDigest(this.regCenterProperties.getDigest());
         return new ZookeeperRegistryCenter(zookeeperConfiguration);
     }
 }
