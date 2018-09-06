@@ -12,6 +12,7 @@ import java.util.concurrent.RecursiveTask;
 public class ForkJoinFormRecursiveTask extends RecursiveTask<Integer> {
 
     private static final int THREAD_HOLD = 4;
+    private static final long serialVersionUID = 4250018100661548208L;
 
     private int start;
     private int end;

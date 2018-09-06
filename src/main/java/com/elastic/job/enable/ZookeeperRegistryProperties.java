@@ -6,7 +6,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 /**
  * @author hwb
  */
-@ConfigurationProperties(prefix = "paascloud.zk")
+@ConfigurationProperties(prefix = "elaticjob.zk")
 @Data
 public class ZookeeperRegistryProperties {
     private String zkAddressList;

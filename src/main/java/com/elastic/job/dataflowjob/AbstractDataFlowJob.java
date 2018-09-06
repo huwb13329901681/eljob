@@ -30,7 +30,7 @@ public abstract class AbstractDataFlowJob<T> implements DataflowJob<T> {
         String taskId = shardingContext.getTaskId();
         String parameter = shardingContext.getJobParameter();
         Map<String, String> map = Splitter.on(",").withKeyValueSeparator("=").split(parameter);
-        JobParameter jobTaskParameter = (new ModelMapper()).map(map, JobParameter.class);
+        JobParameter jobTaskParameter =(new ModelMapper()).map(map, JobParameter.class);
         jobTaskParameter.setShardingItem(shardingItem).setShardingTotalCount(shardingTotalCount);
         log.info("扫描worker任务列表开始,jobName={}, shardingItem={}, shardingTotalCount={}, taskId={}", new Object[]{jobName, shardingItem, shardingTotalCount, taskId});
         long startTimestamp = System.currentTimeMillis();

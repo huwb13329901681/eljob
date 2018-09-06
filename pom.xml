@@ -83,20 +83,16 @@
 		</dependency>
 
 		<!--添加的elastic-job的依赖jar-->
-		<dependency>
-			<groupId>io.elasticjob</groupId>
-			<artifactId>elastic-job-lite-core</artifactId>
-		</dependency>
-
 		<!--<dependency>-->
 			<!--<groupId>io.elasticjob</groupId>-->
-			<!--<artifactId>elastic-job-lite-spring</artifactId>-->
+			<!--<artifactId>elastic-job-lite-core</artifactId>-->
 		<!--</dependency>-->
-		<!--<dependency>-->
-			<!--<groupId>com.github.kuhn-he</groupId>-->
-			<!--<artifactId>elastic-job-lite-spring-boot-starter</artifactId>-->
-			<!--<version>2.1.5</version>-->
-		<!--</dependency>-->
+
+		<dependency>
+			<groupId>com.github.kuhn-he</groupId>
+			<artifactId>elastic-job-lite-spring-boot-starter</artifactId>
+			<version>2.1.5</version>
+		</dependency>
 		<dependency>
 			<groupId>com.dangdang</groupId>
 			<artifactId>elastic-job-lite-core</artifactId>
@@ -156,6 +152,11 @@
 			<groupId>jexcelapi</groupId>
 			<artifactId>jxl</artifactId>
 			<version>2.4.2</version>
+		</dependency>
+		<dependency>
+			<groupId>com.alibaba.rocketmq</groupId>
+			<artifactId>rocketmq-client</artifactId>
+			<version>3.5.3</version>
 		</dependency>
 	</dependencies>
 

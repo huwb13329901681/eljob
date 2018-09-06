@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * @author huwenbin
  */
-@Service
+@Service("userService")
 public class UserServiceImpl implements UserService {
 
     @Override

@@ -13,6 +13,7 @@ import com.dangdang.ddframe.job.config.script.ScriptJobConfiguration;
 import com.dangdang.ddframe.job.config.simple.SimpleJobConfiguration;
 import com.dangdang.ddframe.job.event.rdb.JobEventRdbConfiguration;
 import com.dangdang.ddframe.job.executor.handler.JobProperties.JobPropertiesEnum;
+import com.dangdang.ddframe.job.lite.api.JobScheduler;
 import com.dangdang.ddframe.job.lite.api.listener.AbstractDistributeOnceElasticJobListener;
 import com.dangdang.ddframe.job.lite.api.listener.ElasticJobListener;
 import com.dangdang.ddframe.job.lite.config.LiteJobConfiguration;
@@ -42,8 +43,8 @@ import org.springframework.util.CollectionUtils;
  *
  * @author huwenbin
  */
-@Configuration
-@ConditionalOnExpression("'${elaticjob.zookeeper.server-lists}'.length() > 0")
+//@Configuration
+//@ConditionalOnExpression("'${elaticjob.zk.zkAddressList}'.length() > 0")
 public class ElasticJobAutoConfiguration {
     @Resource
     private ZookeeperRegistryCenter regCenter;
@@ -59,9 +60,9 @@ public class ElasticJobAutoConfiguration {
             ElasticJob elasticJob = (ElasticJob)var2.next();
             Class<? extends ElasticJob> jobClass = elasticJob.getClass();
             ElasticJobConfig elasticJobConfig = jobClass.getAnnotation(ElasticJobConfig.class);
+            ElasticJobListener[] elasticJobListeners = this.createElasticJobListeners(elasticJobConfig);
             LiteJobConfiguration liteJobConfiguration = this.getLiteJobConfiguration(this.getJobType(elasticJob), jobClass, elasticJobConfig);
             JobEventRdbConfiguration jobEventRdbConfiguration = this.getJobEventRdbConfiguration(elasticJobConfig.eventTraceRdbDataSource());
-            ElasticJobListener[] elasticJobListeners = this.createElasticJobListeners(elasticJobConfig);
             elasticJobListeners = Objects.isNull(elasticJobListeners) ? new ElasticJobListener[0] : elasticJobListeners;
             if (Objects.isNull(jobEventRdbConfiguration)) {
                 (new SpringJobScheduler(elasticJob, this.regCenter, liteJobConfiguration, elasticJobListeners)).init();
