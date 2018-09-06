@@ -53,7 +53,6 @@ public class ApiJobDataflowDemo {
 
         // 定义DATAFLOW类型配置  true 是否是流试处理数据，如果是则fetchData不返回空结果将持续执行作业，如果非流式处理数据, 则处理数据完成后作业结束
         DataflowJobConfiguration dataflowJobConfig = new DataflowJobConfiguration(dataflowCoreConfig, clz.getCanonicalName(), true);
-            ElasticJobListener[] elasticJobListeners = this.createElasticJobListeners(conf);
         // 定义Lite作业根配置
             JobTypeConfiguration typeConfig = null;
             if ("SimpleJob".equals(jobTypeName)) {
@@ -63,65 +62,9 @@ public class ApiJobDataflowDemo {
                 typeConfig = new DataflowJobConfiguration(dataflowCoreConfig, clz.getCanonicalName(), true);
             }
             LiteJobConfiguration liteJobConfiguration= LiteJobConfiguration.newBuilder(typeConfig).build();
-            elasticJobListeners = Objects.isNull(elasticJobListeners) ? new ElasticJobListener[0] : elasticJobListeners;
             new JobScheduler(regCenter, liteJobConfiguration).init();
         }
     }
 
-    private ElasticJobListener[] createElasticJobListeners(ElasticConfig lasticConfig) {
-        List<ElasticJobListener> elasticJobListeners = new ArrayList(2);
-        ElasticJobListener elasticJobListener = this.createElasticJobListener(lasticConfig.listener());
-        if (Objects.nonNull(elasticJobListener)) {
-            elasticJobListeners.add(elasticJobListener);
-        }
-        AbstractDistributeOnceElasticJobListener distributedListener = this.createAbstractDistributeOnceElasticJobListener(lasticConfig.distributedListener(), lasticConfig.startedTimeoutMilliseconds(), lasticConfig.completedTimeoutMilliseconds());
-        if (Objects.nonNull(distributedListener)) {
-            elasticJobListeners.add(distributedListener);
-        }
-        if (CollectionUtils.isEmpty(elasticJobListeners)) {
-            return null;
-        } else {
-            ElasticJobListener[] elasticJobListenerArray = new ElasticJobListener[elasticJobListeners.size()];
-            for(int i = 0; i < elasticJobListeners.size(); ++i) {
-                elasticJobListenerArray[i] = elasticJobListeners.get(i);
-            }
-            return elasticJobListenerArray;
-        }
-    }
 
-    private ElasticJobListener createElasticJobListener(Class<? extends ElasticJobListener> listener) {
-        if (listener.isInterface()) {
-            return null;
-        } else {
-            return this.applicationContext.containsBean(listener.getSimpleName()) ? this.applicationContext.getBean(listener.getSimpleName(), ElasticJobListener.class) : this.registerElasticJobListener(listener);
-        }
-    }
-
-    private AbstractDistributeOnceElasticJobListener createAbstractDistributeOnceElasticJobListener(Class<? extends AbstractDistributeOnceElasticJobListener> distributedListener, long startedTimeoutMilliseconds, long completedTimeoutMilliseconds) {
-        if (Objects.equals(distributedListener, AbstractDistributeOnceElasticJobListener.class)) {
-            return null;
-        } else {
-            return this.applicationContext.containsBean(distributedListener.getSimpleName()) ? this.applicationContext.getBean(distributedListener.getSimpleName(), AbstractDistributeOnceElasticJobListener.class) : this.registerAbstractDistributeOnceElasticJobListener(distributedListener, startedTimeoutMilliseconds, completedTimeoutMilliseconds);
-        }
-    }
-
-    private ElasticJobListener registerElasticJobListener(Class<? extends ElasticJobListener> listener) {
-        BeanDefinitionBuilder beanDefinitionBuilder = BeanDefinitionBuilder.rootBeanDefinition(listener);
-        beanDefinitionBuilder.setScope("prototype");
-        this.getDefaultListableBeanFactory().registerBeanDefinition(listener.getSimpleName(), beanDefinitionBuilder.getBeanDefinition());
-        return this.applicationContext.getBean(listener.getSimpleName(), listener);
-    }
-
-    private AbstractDistributeOnceElasticJobListener registerAbstractDistributeOnceElasticJobListener(Class<? extends AbstractDistributeOnceElasticJobListener> distributedListener, long startedTimeoutMilliseconds, long completedTimeoutMilliseconds) {
-        BeanDefinitionBuilder beanDefinitionBuilder = BeanDefinitionBuilder.rootBeanDefinition(distributedListener);
-        beanDefinitionBuilder.setScope("prototype");
-        beanDefinitionBuilder.addConstructorArgValue(startedTimeoutMilliseconds);
-        beanDefinitionBuilder.addConstructorArgValue(completedTimeoutMilliseconds);
-        this.getDefaultListableBeanFactory().registerBeanDefinition(distributedListener.getSimpleName(), beanDefinitionBuilder.getBeanDefinition());
-        return this.applicationContext.getBean(distributedListener.getSimpleName(), distributedListener);
-    }
-
-    private DefaultListableBeanFactory getDefaultListableBeanFactory() {
-        return (DefaultListableBeanFactory)((ConfigurableApplicationContext)this.applicationContext).getBeanFactory();
-    }
 }
