@@ -1,6 +1,6 @@
-package com.elastic.job.lambda;
+package com.elastic.lambda;
 
-import lombok.*;
+import lombok.Data;
 
 
 /**

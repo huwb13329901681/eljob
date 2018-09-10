@@ -4,7 +4,7 @@ import com.dangdang.ddframe.job.api.ShardingContext;
 import com.dangdang.ddframe.job.api.dataflow.DataflowJob;
 import com.elastic.job.enable.JobParameter;
 import com.google.common.base.Splitter;
-import org.modelmapper.ModelMapper;
+//import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -31,7 +31,7 @@ public abstract class AbstractDataFlowJob<T> implements DataflowJob<T> {
         String taskId = shardingContext.getTaskId();
         String parameter = shardingContext.getJobParameter();
         Map<String, String> map = Splitter.on(",").withKeyValueSeparator("=").split(parameter);
-        JobParameter jobTaskParameter =(new ModelMapper()).map(map, JobParameter.class);
+        JobParameter jobTaskParameter =null;//(new ModelMapper()).map(map, JobParameter.class);
         jobTaskParameter.setShardingItem(shardingItem).setShardingTotalCount(shardingTotalCount);
         log.info("扫描worker任务列表开始,jobName={}, shardingItem={}, shardingTotalCount={}, taskId={}", new Object[]{jobName, shardingItem, shardingTotalCount, taskId});
         long startTimestamp = System.currentTimeMillis();

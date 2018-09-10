@@ -1,4 +1,4 @@
-package com.elastic.job.lambda;
+package com.elastic.lambda;
 
 import com.google.common.collect.Lists;
 import org.junit.Test;

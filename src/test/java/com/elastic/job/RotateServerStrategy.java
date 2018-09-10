@@ -1,5 +1,6 @@
-package com.elastic.job.lambda;
+package com.elastic.job;
 
+import com.elastic.lambda.JobStance;
 import com.google.common.collect.Lists;
 import org.junit.Test;
 
@@ -16,7 +17,7 @@ public class RotateServerStrategy {
     @Test
     public void test(){
 
-        //3台服务器
+        //6台服务器
         List<JobStance> shardingUnits = Lists.newArrayList();
         JobStance jobInstance1 = new JobStance();
         jobInstance1.setJobInstanceId(UUID.randomUUID().toString()+"1");

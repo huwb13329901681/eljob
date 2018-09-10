@@ -1,10 +1,12 @@
-package com.elastic.job.lambda;
+package com.elastic.lambda;
 
-import com.dangdang.ddframe.job.lite.api.strategy.JobInstance;
 import com.google.common.collect.Lists;
 import org.springframework.beans.BeanUtils;
 
-import java.util.*;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -25,7 +27,7 @@ public class LambdaTest {
 
         // 1.排序
         appleList.sort(Comparator.comparing(Apple::getWeigth));
-        appleList.sort((Apple ap1,Apple ap2) ->ap1.getWeigth().compareTo(ap2.getWeigth()));
+        appleList.sort((Apple ap1, Apple ap2) ->ap1.getWeigth().compareTo(ap2.getWeigth()));
 
         //2.过滤red 返回一个集合
         appleList.stream().filter((Apple apple) -> ("red").equals(apple.getColor())).collect(Collectors.toList());

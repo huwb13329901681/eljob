@@ -1,5 +1,6 @@
-package com.elastic.job.lambda;
+package com.elastic.job;
 
+import com.elastic.lambda.JobStance;
 import com.google.common.collect.Lists;
 import org.junit.Test;
 
@@ -27,7 +28,7 @@ public class AverageStrategt {
         shardingUnits.add(jobInstance1);
         shardingUnits.add(jobInstance2);
         shardingUnits.add(jobInstance3);
-        // 将任务分成9片
+        // 将任务分成10片
         Integer shardingTotalCount = 10;
         Map<JobStance, List<Integer>> result = new LinkedHashMap<>(shardingTotalCount, 1);
         //获取值 10/3 = 1

@@ -1,4 +1,4 @@
-package com.elastic.job.lambda;
+package com.elastic.lambda;
 
 import org.junit.Test;
 
