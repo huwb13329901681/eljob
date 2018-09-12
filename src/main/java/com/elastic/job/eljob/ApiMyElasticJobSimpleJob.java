@@ -15,8 +15,8 @@ import java.util.List;
 /**
  * @author huwenbin
  */
-@ElasticConfig(name="SimpleJob",cron = "0/03 * * * * ?")
-@Component
+//@ElasticConfig(name="SimpleJob",cron = "0/03 * * * * ?")
+//@Component
 @Slf4j
 public class ApiMyElasticJobSimpleJob implements SimpleJob {
 

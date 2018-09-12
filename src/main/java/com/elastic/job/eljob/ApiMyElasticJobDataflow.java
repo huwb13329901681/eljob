@@ -23,8 +23,8 @@ import java.util.UUID;
  *  Dataflow类型用于处理数据流 需实现Dataflow接口，该接口提供2个方法可覆盖，
  *  分别用于抓取(fetchData)和处理(processData)数据。
  */
-@ElasticConfig(name="ApiMyElasticJobDataflow",cron = "0/05 * * * * ?",shardingTotalCount = 3)
-@Component
+//@ElasticConfig(name="ApiMyElasticJobDataflow",cron = "0/05 * * * * ?",shardingTotalCount = 3)
+//@Component
 public class ApiMyElasticJobDataflow implements DataflowJob<User>{
 
     @Autowired

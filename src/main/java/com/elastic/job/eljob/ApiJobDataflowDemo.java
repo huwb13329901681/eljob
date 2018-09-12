@@ -26,8 +26,8 @@ import java.util.Map;
  * 用于注册和协调作业分布式行为的组件，目前仅支持Zookeeper
  * @author huwenbin
  */
-@Configuration
-@ConditionalOnExpression("'${elaticjob.zk.zkAddressList}'.length() > 0")
+//@Configuration
+//@ConditionalOnExpression("'${elaticjob.zk.zkAddressList}'.length() > 0")
 public class ApiJobDataflowDemo {
 
     @Resource

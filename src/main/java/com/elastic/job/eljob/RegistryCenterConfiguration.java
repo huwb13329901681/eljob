@@ -22,10 +22,10 @@ import org.springframework.context.annotation.Configuration;
  *  @ConditionalOnNotWebApplication（不是web应用）
  *  @EnableConfigurationProperties @ConfigurationProperties注解主要用来把properties配置文件转化为bean来使用的而@EnableConfigurationProperties注解的作用是@ConfigurationProperties注解生效
  */
-@Configuration
-@ConditionalOnClass({ElasticJob.class})
-@ConditionalOnBean(annotation = {ElasticConfig.class})
-@EnableConfigurationProperties({ZookeeperRegistryProperties.class})
+//@Configuration
+//@ConditionalOnClass({ElasticJob.class})
+//@ConditionalOnBean(annotation = {ElasticConfig.class})
+//@EnableConfigurationProperties({ZookeeperRegistryProperties.class})
 public class RegistryCenterConfiguration {
     private final ZookeeperRegistryProperties regCenterProperties;
 
