@@ -9,6 +9,8 @@ public class ForkJoinFormRecursiveAction extends RecursiveAction {
 
     private static final int THREAD_HOLD = 2;
 
+    private static final long serialVersionUID = -3076398628392316048L;
+
     private int start;
     private int end;
 

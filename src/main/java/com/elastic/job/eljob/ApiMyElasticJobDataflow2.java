@@ -18,8 +18,7 @@ import java.util.Map;
  *  Dataflow类型用于处理数据流 需实现Dataflow接口，该接口提供2个方法可覆盖，
  *  分别用于抓取(fetchData)和处理(processData)数据。
  */
-//@ElasticConfig(name="ApiMyElasticJobDataflow2",cron = "0/10 * * * * ?",failover=true,shardingTotalCount = 1)
-//@Component
+@ElasticConfig(cron = "0/10 * * * * ?",failover=true,shardingTotalCount = 1)
 public class ApiMyElasticJobDataflow2 implements DataflowJob<User>{
 
     @Autowired

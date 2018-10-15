@@ -25,12 +25,6 @@ public @interface ElasticConfig {
     int shardingTotalCount() default 1;
 
     /**
-     * 作业名称
-     *
-     */
-    String name() ;
-
-    /**
      * 分片序列号和参数用等号分隔，多个键值对用逗号分隔
      * <p>分片序列号从0开始，不可大于或等于作业分片总数<p>
      * <p>如：<p>

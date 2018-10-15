@@ -44,7 +44,8 @@ public class ApiJobDataflowDemo {
             Class<?> clz = elasticJobMBean.getClass();
             ElasticConfig conf = clz.getAnnotation(ElasticConfig.class);
             String jobTypeName = elasticJobMBean.getClass().getInterfaces()[0].getSimpleName();
-            JobCoreConfiguration dataflowCoreConfig = JobCoreConfiguration.newBuilder(conf.name(),conf.cron(), conf.shardingTotalCount()).jobParameter(conf.jobParameter()).shardingItemParameters(conf.shardingItemParameters()).failover(conf.failover()).build();
+            String name = clz.getName();
+            JobCoreConfiguration dataflowCoreConfig = JobCoreConfiguration.newBuilder(name,conf.cron(), conf.shardingTotalCount()).jobParameter(conf.jobParameter()).shardingItemParameters(conf.shardingItemParameters()).failover(conf.failover()).build();
             // 定义Lite作业根配置
             JobTypeConfiguration typeConfig = null;
             if ("SimpleJob".equals(jobTypeName)) {

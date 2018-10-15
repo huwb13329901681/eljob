@@ -78,6 +78,7 @@ public class LambdaTest {
         }).collect(Collectors.toList());
         System.out.println("使用stream流" + bananas);
 
+        Optional<Apple> collect5 = appleList.stream().max((apple1, apple2) -> apple1.getWeigth() - apple2.getWeigth());
         Optional<Apple> collect3 = appleList.stream().collect(Collectors.maxBy((apple1, apple2) -> apple1.getWeigth() - apple2.getWeigth()));
         appleList.stream().max(Comparator.comparingInt(Apple::getWeigth));
         System.out.println("最重的水果："+collect3);
